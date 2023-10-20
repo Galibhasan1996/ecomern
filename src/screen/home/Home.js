@@ -1,11 +1,14 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList, ScrollView, TextInput, Alert, ActivityIndicator, Modal, Dimensions, StatusBar } from 'react-native'
 import React, { useState, useEffect } from 'react'
+import Layout from '../../../component/Layout/Layout'
 
 const Home = () => {
     return (
-        <View style={styles.container}>
-            <Text>Home</Text>
-        </View>
+        <Layout>
+            <View>
+                <Text>Home</Text>
+            </View>
+        </Layout>
     )
 }
 
