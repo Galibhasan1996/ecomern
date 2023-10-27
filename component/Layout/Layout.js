@@ -1,19 +1,19 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList, ScrollView, TextInput, Alert, ActivityIndicator, Modal, Dimensions, StatusBar } from 'react-native'
-import React, { useState, useEffect, Children } from 'react'
-import Header from '../Header/Header'
-import Footer from '../Footer/Footer'
+import { StyleSheet, Text, View, FlatList } from 'react-native'
+import React from 'react'
+import { productData } from '../../src/util/data/productData/ProductData'
 
-const Layout = ({ Children }) => {
+
+const Layout = () => {
     return (
-        <>
-            <Header></Header>
-            <View>{Children}</View>
-            <Footer></Footer>
-
-        </>
-
-
-
+        <View style={styles.container}>
+            <FlatList data={productData} numColumns={2} renderItem={({ item }) => {
+                return (
+                    <View style={styles.list_conatainer} key={item._id}>
+                        <Text>{item.name}</Text>
+                    </View>
+                )
+            }} />
+        </View>
     )
 }
 
@@ -22,6 +22,17 @@ export default Layout
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#fff"
+        backgroundColor: 'white',
+    },
+    list_conatainer: {
+        width: '40%',
+        height: 200,
+        borderColor: 'red',
+        borderWidth: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginVertical: 5,
+        borderRadius: 10,
+        marginLeft: 25,
     }
 })

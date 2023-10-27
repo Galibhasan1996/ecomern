@@ -1,13 +1,26 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList, ScrollView, TextInput, Alert, ActivityIndicator, Modal, Dimensions, StatusBar } from 'react-native'
-import React, { useState, useEffect } from 'react'
+import { StyleSheet, View, Image, TouchableOpacity, TextInput, } from 'react-native'
+import React from 'react'
 import { color_name } from '../../src/util/Color'
 
-const Header = () => {
+const Header = ({ placeholder, rightIcon, onClickRightIcon, value, onChangeText, onFocus, onPressIn }) => {
     return (
         <View style={styles.container}>
             <View style={styles.input_container}>
-                <TextInput placeholder={"Search Item"} style={styles.main_input}></TextInput>
-                <Image style={styles.input_search_icon} source={require('../../src/image/search.png')} />
+                <TextInput
+                    placeholder={placeholder}
+                    style={styles.main_input}
+                    value={value}
+                    onChangeText={onChangeText}
+                    onFocus={onFocus}
+                    onPressIn={onPressIn}
+                />
+                <TouchableOpacity onPress={() => {
+                    onClickRightIcon()
+                }}>
+                    {
+                        rightIcon && <Image style={styles.input_search_icon} source={rightIcon} />
+                    }
+                </TouchableOpacity>
             </View>
         </View>
     )
@@ -17,16 +30,18 @@ export default Header
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: color_name.gray,
+        backgroundColor: color_name.Androidgreen,
         width: '100%',
-        height: 60,
+        height: 70,
         alignItems: 'center',
         justifyContent: 'center',
+        position: "absolute",
+        top: 0,
     },
     input_container: {
         width: '90%',
         backgroundColor: color_name.white,
-        height: "70%",
+        height: "60%",
         flexDirection: "row",
         borderRadius: 5,
         alignItems: 'center',
