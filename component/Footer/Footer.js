@@ -48,7 +48,7 @@ const Footer = () => {
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => {
-                navigation.navigate('Logout')
+                navigation.navigate('Login')
             }}>
                 <Image source={route.name === 'Logout' ? require('../../src/image/offfill.png') : require('../../src/image/off.png')}
                     style={styles.footer_image}></Image>

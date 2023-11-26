@@ -1,12 +1,14 @@
-import { StyleSheet, Text, View, } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, Dimensions, Alert } from 'react-native'
 import React, { useState } from 'react'
 import Footer from '../../../component/Footer/Footer'
 import { cartData } from '../../util/data/cartData/CartData'
 import { color_name } from '../../util/Color'
 import PriceTable from '../../../component/cart/PriceTable'
+import CartItem from '../../../component/cart/cartItem/CartItem'
+import Button from '../../../component/button/Button'
 
-
-const Add_Cart = () => {
+const { width, height } = Dimensions.get('window')
+const Add_Cart = ({ navigation }) => {
     const [cartItem, setcartItem] = useState(cartData)
     return (
         <View style={styles.container}>
@@ -20,9 +22,17 @@ const Add_Cart = () => {
             </Text>
 
             {
-                cartItem && (
-                    <>
-                        <Text>{"Carty Item"}</Text>
+                cartItem.length > 0 && (
+                    <View>
+                        <ScrollView style={{ height: 300, }}>
+                            {
+                                cartItem?.map((item) => {
+                                    return (
+                                        <CartItem item={item} key={item._id} />
+                                    )
+                                })
+                            }
+                        </ScrollView>
                         <View>
                             <PriceTable title={"Price"} price={'235'} />
                             <PriceTable title={"tex"} price={'5'} />
@@ -31,7 +41,19 @@ const Add_Cart = () => {
                                 <PriceTable title={"Grand Total"} price={'265'} />
                             </View>
                         </View>
-                    </>
+
+                        <View style={styles.button_contaier}>
+                            <Button
+                                backgroundColor={color_name.black}
+                                title={'Check Out'}
+                                titleColor={color_name.white}
+                                custom_width={200}
+                                custom_height={30}
+                                onclick={() => { navigation.navigate('CheckOut') }}
+                            />
+                        </View>
+
+                    </View>
                 )
             }
             <Footer></Footer>
@@ -60,5 +82,9 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         marginTop: 10,
         paddingVertical: 5,
+    },
+    button_contaier: {
+        alignSelf: 'center',
+        marginTop: 10,
     }
 })

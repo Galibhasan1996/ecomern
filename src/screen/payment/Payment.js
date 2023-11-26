@@ -2,22 +2,20 @@ import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList, ScrollView, 
 import React, { useState, useEffect } from 'react'
 import Footer from '../../../component/Footer/Footer'
 
-const Notification = () => {
+const Payment = () => {
     return (
         <View style={styles.container}>
-            <Text>{`Your don't have any notification`}</Text>
-            <Footer></Footer>
+            <Text>Payment</Text>
+            <Footer />
         </View>
     )
 }
 
-export default Notification
+export default Payment
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#fff",
-        alignItems: 'center',
-        justifyContent: 'center',
+        backgroundColor: "#fff"
     }
 })
