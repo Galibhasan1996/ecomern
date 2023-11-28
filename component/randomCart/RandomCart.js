@@ -14,6 +14,7 @@ const RandomCart = () => {
                 <Text>RandomCart</Text>
             </View>
 
+
         </View>
     )
 }
@@ -32,7 +33,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: 'center',
         paddingVertical: 10,
-        marginBottom: responsiveHeight(8)
+        // marginBottom: responsiveHeight(1)
     },
     inside_container: {
         width: responsiveWidth(40),

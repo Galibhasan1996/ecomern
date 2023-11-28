@@ -5,15 +5,17 @@ import { color_name } from '../../util/Color'
 import Button from '../../../component/button/Button'
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from "react-native-responsive-dimensions";
 import { useDispatch, useSelector } from 'react-redux'
-import { login } from '../../reduxToolkit/action/UserAction'
 import { server } from '../../reduxToolkit/store/Store'
+import { login } from '../../reduxToolkit/action/UserAction'
+import CustomModel from '../../../component/modal/CustomModel'
 
 
 
 const Login = ({ navigation }) => {
     const dispatch = useDispatch()
     const { loading, message, error } = useSelector(state => state.user)
-
+    // console.log(message, error);
+    const [visible, setvisible] = useState(false)
 
     const [email, setemail] = useState('')
     const [Password, setPassword] = useState('')
@@ -45,8 +47,7 @@ const Login = ({ navigation }) => {
             return
         }
         else {
-            // clearAllInput()
-
+            setvisible(true)
             // dispatch(login(email, Password))
             fetch(`${server}/user/login`, {
                 method: "POST",
@@ -58,9 +59,12 @@ const Login = ({ navigation }) => {
                 .then((res) => { return res.json() })
                 .then(async (data) => {
                     if (data.error) {
+                        setvisible(false)
                         Alert.alert(data.error)
                     }
                     else if (data.message === "Login successfully") {
+                        setvisible(false)
+                        clearAllInput()
                         navigation.navigate('Home')
 
                     }
@@ -95,6 +99,8 @@ const Login = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
+            <CustomModel visible={visible}></CustomModel>
+
             <View style={styles.logo_container}>
                 <Image source={require('../../image/user.png')} style={styles.logo_image} />
             </View>
@@ -161,7 +167,6 @@ const Login = ({ navigation }) => {
                     </TouchableOpacity>
                 </View>
             </View>
-
 
         </View>
     )

@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, ScrollView, StatusBar } from 'react-native'
-import React from 'react'
+import React, { cloneElement } from 'react'
 import Header from '../../../component/Header/Header'
 import Category from '../../../component/Category/Category'
 import Banner from '../../../component/banner/Banner'
@@ -22,9 +22,12 @@ const Home = () => {
             {/* banner */}
             <Banner></Banner>
 
-            <ScrollView>
+            <ScrollView style={{ marginBottom: 50, }}>
                 <Product></Product>
                 <RandomCart></RandomCart>
+                <RandomCart></RandomCart>
+                <RandomCart></RandomCart>
+
 
             </ScrollView>
             <Footer></Footer>
@@ -40,3 +43,4 @@ const styles = StyleSheet.create({
         backgroundColor: color_name.white
     }
 })
+

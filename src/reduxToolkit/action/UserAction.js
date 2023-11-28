@@ -2,30 +2,31 @@ import server from '../../reduxToolkit/store/Store.js'
 import axios from 'axios'
 // action for loging
 
+// action login
 export const login = (email, password) => async (dispatch) => {
     try {
         dispatch({
-            type: 'loginRequest'
-        })
-        const { data } = await axios.post(`${server}/user/login`,
-            { email, password },
+            type: "loginRequest",
+        });
+        // hitting node login api request
+        const { data } = await axios.post(`${server}/user/login`, { email, password },
             {
                 headers: {
-                    'Content-Type': 'application/json'
-                }
+                    "Content-Type": "application/json",
+                },
             }
-        )
-
+        );
         dispatch({
-            type: "logingSuccess",
-            payload: data?.message
-        })
-
-
+            type: "logingSucess",
+            payload: data?.message,
+        });
     } catch (error) {
         dispatch({
-            type: 'loginFail',
-            payload: error.response.data.message
-        })
+            type: "loginFail",
+            payload: error.response.data.message,
+        });
     }
-}
+};
+
+
+

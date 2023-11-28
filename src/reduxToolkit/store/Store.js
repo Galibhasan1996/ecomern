@@ -1,18 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit"
-import { UserReducer } from "../action/UserReducer"
+import { userReducer } from "../action/UserReducer"
 
 
 
-// export const store = configureStore({
-//     reducer: {
-//         user: UserReducer
-//     }
-// })
+
+
 
 export default configureStore({
     reducer: {
-        user: UserReducer
-    }
-})
+        user: userReducer,
+    },
+});
 
-export const server = 'http://192.168.42.231:8080/api/v1'
+export const server = 'https://shiny-yak-moccasins.cyclic.app/api/v1'
